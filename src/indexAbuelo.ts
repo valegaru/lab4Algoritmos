@@ -8,6 +8,19 @@ class AppContainer extends HTMLElement {
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
+
+		//datarick.forEach((user) => {
+		//const profileCard = this.ownerDocument.createElement('my-character') as MyCharacter;
+		//profileCard.setAttribute(Attribute.name, user.name);
+		//profileCard.setAttribute(Attribute.uid, String(user.id));
+		//profileCard.setAttribute(Attribute.image, user.image);
+		//profileCard.setAttribute(Attribute.status, user.status);
+		//profileCard.setAttribute(Attribute.species, user.species);
+		//profileCard.setAttribute(Attribute.type, user.type);
+		//profileCard.setAttribute(Attribute.origin, user.origin);
+		//profileCard.setAttribute(Attribute.nameoffirstepisode, user.episodio);
+		//this.characters.push(profileCard);
+		//});
 	}
 
 	async connectedCallback() {
