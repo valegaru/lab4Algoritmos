@@ -3,7 +3,7 @@ import './components/indexPadre';
 import MyCharacter, { Attribute } from './components/Character/Character';
 
 class AppContainer extends HTMLElement {
-	character: MyCharacter[] = []; //creo un arreglo de trabajadores porque a data tiene varios trabajadores y voy a renderizar de mis componentes Trabajador
+	characters: MyCharacter[] = []; //creo un arreglo de trabajadores porque a data tiene varios trabajadores y voy a renderizar de mis componentes Trabajador
 
 	constructor() {
 		super();
@@ -11,11 +11,25 @@ class AppContainer extends HTMLElement {
 	}
 
 	async connectedCallback() {
-		this.render();
-		const data = await getRickMorty(8); //a partir de data renderizo
+		for (let i = 1; i <= 5; i++) {
+			const datarick = await getRickMorty(i); //a partir de aqui que estoy guardando lo que hago fetch en data, renderizo
+			console.log(datarick);
+			this.render(datarick);
+		}
 	}
 
-	render() {}
+	render(datarick: any) {
+		if (this.shadowRoot) {
+			this.shadowRoot.innerHTML += `<my-character
+			image='${datarick.image}
+			name=${datarick.name}
+			status=${datarick.status}
+			species=${datarick.species}
+			type=${datarick.type}
+			origin=${datarick.origin}
+			nameoffirstepisode=${datarick.episode}></my-character>`;
+		}
+	}
 }
 
 customElements.define('app-container', AppContainer);
