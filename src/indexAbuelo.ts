@@ -34,13 +34,13 @@ class AppContainer extends HTMLElement {
 	render(datarick: any) {
 		if (this.shadowRoot) {
 			this.shadowRoot.innerHTML += `<my-character
-			image='${datarick.image}
-			name=${datarick.name}
-			status=${datarick.status}
-			species=${datarick.species}
-			type=${datarick.type}
-			origin=${datarick.origin}
-			nameoffirstepisode=${datarick.episode}></my-character>`;
+			image='${datarick.image}'
+			name='${datarick.name}'
+			status='${datarick.status}'
+			species='${datarick.species}'
+			type='${datarick.type}'
+			origin='${datarick.origin.name}'
+			nameoffirstepisode='${datarick.episode}'></my-character>`;
 		}
 	}
 }

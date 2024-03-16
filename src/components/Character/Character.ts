@@ -71,8 +71,8 @@ class Character extends HTMLElement {
         <p><b>Status:</b> ${this.status}</p>
         <p><b>Species:</b> ${this.species} years old</p>
         <p><b>Type:</b> ${this.type}</p>
-        <h3><b>Origin:</b> ${this.origin}</h3>
-        <h3><b>FirstEpisode:</b> ${this.nameoffirstepisode}</h3>
+        <p><b>Origin:</b> ${this.origin}</p>
+        <p><b>First Episode:</b> ${this.nameoffirstepisode}</p>
         </section>
         `;
 		}
