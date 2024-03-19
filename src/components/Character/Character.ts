@@ -1,3 +1,5 @@
+import styles from './Character.css';
+
 export enum Attribute { //enum es algo de ts, permiten definir un conjunto de constantes con nombres
 	'image' = 'image',
 	'name' = 'name',
@@ -76,6 +78,9 @@ class Character extends HTMLElement {
         </section>
         `;
 		}
+		const cssCharacter = this.ownerDocument.createElement('style');
+		cssCharacter.innerHTML = styles;
+		this.shadowRoot?.appendChild(cssCharacter);
 	}
 }
 
