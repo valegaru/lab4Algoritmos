@@ -3,44 +3,43 @@ import './components/indexPadre';
 import MyCharacter, { Attribute } from './components/Character/Character';
 
 class AppContainer extends HTMLElement {
-	characters: MyCharacter[] = []; //creo un arreglo de trabajadores porque a data tiene varios trabajadores y voy a renderizar de mis componentes Trabajador
+	characters: MyCharacter[] = [];
 
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
-
-		//datarick.forEach((user) => {
-		//const profileCard = this.ownerDocument.createElement('my-character') as MyCharacter;
-		//profileCard.setAttribute(Attribute.name, user.name);
-		//profileCard.setAttribute(Attribute.uid, String(user.id));
-		//profileCard.setAttribute(Attribute.image, user.image);
-		//profileCard.setAttribute(Attribute.status, user.status);
-		//profileCard.setAttribute(Attribute.species, user.species);
-		//profileCard.setAttribute(Attribute.type, user.type);
-		//profileCard.setAttribute(Attribute.origin, user.origin);
-		//profileCard.setAttribute(Attribute.nameoffirstepisode, user.episodio);
-		//this.characters.push(profileCard);
-		//});
 	}
 
 	async connectedCallback() {
-		for (let i = 1; i <= 5; i++) {
-			const datarick = await getRickMorty(i); //a partir de aqui que estoy guardando lo que hago fetch en data, renderizo
-			console.log(datarick);
-			this.render(datarick);
+		for (let i = 1; i <= 15; i++) {
+			//hasta tal personaje
+			const characterData = await getRickMorty(i);
+			const firstEpisodeName = await this.getFirstEpisodeName(characterData.episode[0]); // Obtener el nombre del primer episodio
+			this.render({ ...characterData, nameoffirstepisode: firstEpisodeName });
 		}
 	}
 
-	render(datarick: any) {
+	//usa lo que ya sacamos con getRickMorty
+	async getFirstEpisodeName(episodeUrl: string): Promise<string> {
+		try {
+			const episodeData = await fetch(episodeUrl).then((res) => res.json());
+			return episodeData.name;
+		} catch (error) {
+			console.error('Error fetching episode data:', error);
+			return 'Unknown';
+		}
+	}
+
+	render(characterData: any) {
 		if (this.shadowRoot) {
 			this.shadowRoot.innerHTML += `<my-character
-			image='${datarick.image}'
-			name='${datarick.name}'
-			status='${datarick.status}'
-			species='${datarick.species}'
-			type='${datarick.type}'
-			origin='${datarick.origin.name}'
-			nameoffirstepisode='${datarick.episode}'></my-character>`;
+                image='${characterData.image || 'not declared'}'
+                name='${characterData.name || 'not declared'}'
+                status='${characterData.status || 'not declared'}'
+                species='${characterData.species || 'not declared'}'
+                type='${characterData.type || 'not declared'}'
+                origin='${characterData.origin.name || 'not declared'}'
+                nameoffirstepisode='${characterData.nameoffirstepisode || 'not declared'}'></my-character>`;
 		}
 	}
 }
