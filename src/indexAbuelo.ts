@@ -1,4 +1,5 @@
 // indexAbuelo.ts
+import styles from './indexAbuelo.css';
 import { getRickMorty } from './data/dataFetch';
 import './components/indexPadre';
 import MyCharacter, { Attribute } from './components/Character/Character';
@@ -23,7 +24,7 @@ class AppContainer extends HTMLElement {
                 <label for="characterCount">Number of Characters to Show:</label>
                 <input type="number" id="characterCount" name="characterCount" min="1" placeholder="Enter number of characters">
                 <button id="showCharactersButton">Show Characters</button>
-                <div id="charactersContainer"></div>
+                <section id="charactersContainer"></section>
             `;
 
 			this.characterCountInput = this.shadowRoot.querySelector('#characterCount');
@@ -73,6 +74,9 @@ class AppContainer extends HTMLElement {
 			characterElement.setAttribute('nameoffirstepisode', firstEpisodeName || 'not declared');
 			this.charactersContainer.appendChild(characterElement);
 		}
+		const cssCharacter = this.ownerDocument.createElement('style');
+		cssCharacter.innerHTML = styles;
+		this.shadowRoot?.appendChild(cssCharacter);
 	}
 }
 
