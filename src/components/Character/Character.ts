@@ -71,7 +71,7 @@ class Character extends HTMLElement {
         <img src="${this.image}"><img>
         <h1><b>Name:</b> ${this.name}</h1>
         <p><b>Status:</b> ${this.status}</p>
-        <p><b>Species:</b> ${this.species} years old</p>
+        <p><b>Species:</b> ${this.species}</p>
         <p><b>Type:</b> ${this.type}</p>
         <p><b>Origin:</b> ${this.origin}</p>
         <p><b>First Episode:</b> ${this.nameoffirstepisode}</p>
