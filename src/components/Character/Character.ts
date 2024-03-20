@@ -19,7 +19,7 @@ class Character extends HTMLElement {
 	species?: string;
 	type?: string;
 	origin?: string;
-	nameoffirstepisode?: string; // years
+	nameoffirstepisode?: string;
 
 	//igual que en js
 	constructor() {

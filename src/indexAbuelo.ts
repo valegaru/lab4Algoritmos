@@ -1,4 +1,3 @@
-// indexAbuelo.ts
 import styles from './indexAbuelo.css';
 import { getRickMorty } from './data/dataFetch';
 import './components/indexPadre';
@@ -7,7 +6,7 @@ import MyCharacter, { Attribute } from './components/Character/Character';
 class AppContainer extends HTMLElement {
 	characters: MyCharacter[] = [];
 	characterCountInput: HTMLInputElement | null = null;
-	charactersContainer: HTMLDivElement | null = null; // Agregamos una referencia al contenedor de personajes
+	charactersContainer: HTMLDivElement | null = null;
 
 	constructor() {
 		super();
@@ -21,28 +20,32 @@ class AppContainer extends HTMLElement {
 	render() {
 		if (this.shadowRoot) {
 			this.shadowRoot.innerHTML = `
+			<section id="enterNumber">
                 <label for="characterCount">Number of Characters to Show:</label>
                 <input type="number" id="characterCount" name="characterCount" min="1" placeholder="Enter number of characters">
                 <button id="showCharactersButton">Show Characters</button>
+								</section>
                 <section id="charactersContainer"></section>
             `;
 
 			this.characterCountInput = this.shadowRoot.querySelector('#characterCount');
 			const showCharactersButton = this.shadowRoot.querySelector('#showCharactersButton');
-			this.charactersContainer = this.shadowRoot.querySelector('#charactersContainer'); // Asignamos la referencia al contenedor
+			this.charactersContainer = this.shadowRoot.querySelector('#charactersContainer');
 
 			if (showCharactersButton) {
 				showCharactersButton.addEventListener('click', this.handleShowCharacters.bind(this));
 			}
+			const cssContainer = this.ownerDocument.createElement('style'); // Agregar estilos
+			cssContainer.innerHTML = styles;
+			this.shadowRoot.appendChild(cssContainer);
 		}
 	}
 
 	async handleShowCharacters() {
 		if (this.characterCountInput && this.charactersContainer) {
-			// Verificamos que las referencias no sean nulas
 			const characterCount = parseInt(this.characterCountInput.value, 10);
 			if (!isNaN(characterCount)) {
-				this.charactersContainer.innerHTML = ''; // Limpiamos el contenido del contenedor
+				this.charactersContainer.innerHTML = ''; //  se vacia antes de volver a renderizar
 				for (let i = 1; i <= characterCount; i++) {
 					const characterData = await getRickMorty(i);
 					const firstEpisodeName = await this.getFirstEpisodeName(characterData.episode[0]);
@@ -74,7 +77,7 @@ class AppContainer extends HTMLElement {
 			characterElement.setAttribute('nameoffirstepisode', firstEpisodeName || 'not declared');
 			this.charactersContainer.appendChild(characterElement);
 		}
-		const cssCharacter = this.ownerDocument.createElement('style');
+		const cssCharacter = this.ownerDocument.createElement('style'); //agregar estilos a las cartas
 		cssCharacter.innerHTML = styles;
 		this.shadowRoot?.appendChild(cssCharacter);
 	}

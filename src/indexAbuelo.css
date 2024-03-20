@@ -1,6 +1,56 @@
+* {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	box-sizing: border-box;
+}
+
+#enterNumber {
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	margin: 20px auto; /* Centra horizontalmente */
+	max-width: 500px;
+	display: flex;
+	flex-direction: column; /* Alinea los elementos en columna */
+	justify-content: center; /* Centra horizontalmente */
+	align-items: center; /* Centra verticalmente */
+	margin-bottom: 20px; /* Espacio entre el contenedor y el #charactersContainer */
+}
+
+label {
+	margin-bottom: 10px; /* Espacio entre el label y el input */
+}
+
+input[type='number'],
+button {
+	padding: 10px;
+	margin: 5px 0; /* Espacio entre el input/botón */
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+input[type='number'] {
+	width: 220px;
+	background-color: rgb(88, 209, 209);
+}
+
+button {
+	background-color: #4caf50;
+	color: white;
+}
+
+button:hover {
+	background-color: #14df1e;
+}
+
 #charactersContainer {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 my-character {

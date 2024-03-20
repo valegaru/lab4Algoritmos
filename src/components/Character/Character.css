@@ -1,0 +1,28 @@
+section {
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	margin: 20px;
+	max-width: 300px;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+img {
+	width: 100%;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+h1 {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+p {
+	margin-bottom: 5px;
+}
+
+b {
+	color: #333;
+}
